@@ -3,7 +3,7 @@ Handlebars is a great and simple templating engine for generating HTML. But what
 
 ## Installation
 Install it using NPM:
-```sh
+```shell
 npm install --save handlebars-a-la-json
 ```
 
