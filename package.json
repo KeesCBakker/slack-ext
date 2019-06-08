@@ -1,0 +1,21 @@
+{
+  "name": "slack-ext-mono-root",
+  "private": true,
+  "dependencies": {
+    "strongly-typed-events": "*"
+  },
+  "devDependencies": {
+    "husky": "^2.4.0",
+    "lerna": "^3.14.1"
+  },
+  "scripts": {
+    "test": "lerna bootstrap & lerna run test",
+    "upgrade-packages": "ncu -a & npm install",
+    "make": "lerna bootstrap & lerna run test & lerna run build && lerna publish --yes --cd-version patch & git add . & git commit -m Version-bump && git push "
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm test"
+    }
+  }
+}
