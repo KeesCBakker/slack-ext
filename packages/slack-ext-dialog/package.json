@@ -1,7 +1,7 @@
 {
-  "name": "handlebars-dir",
+  "name": "slack-ext-dialog",
   "version": "1.4.11",
-  "description": "Handlebars template parser based on a directory.",
+  "description": "Template based dialogs.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -36,10 +36,13 @@
     "@types/node": "^10.12.15",
     "chai": "^4.2.0",
     "del-cli": "^1.1.0",
-    "handlebars": "^4.1.2",
     "mocha": "^5.2.0",
     "ts-node": "^7.0.1",
     "typescript": "^3.2.2"
+  },
+  "dependencies": {
+    "handlebars-a-la-json": "^1.4.11",
+    "handlebars-dir": "^1.4.11"
   },
   "engines": {
     "node": ">=4.2.4"
