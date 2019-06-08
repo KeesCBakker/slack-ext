@@ -1,0 +1,19 @@
+{
+    "folders": [
+        {
+            "name": "handlebars-a-la-json",
+            "path": "packages/handlebars-a-la-json"
+        },
+        {
+            "name": "handlebars-dir",
+            "path": "packages/handlebars-dir"
+        },
+        {
+            "name": "slack-ext-dialog",
+            "path": "packages/slack-ext-dialog"
+        },
+        {
+            "path": "."
+        }
+    ]
+}

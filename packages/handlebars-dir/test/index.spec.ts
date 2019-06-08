@@ -2,131 +2,56 @@
 
 import { expect } from "chai";
 import { create as createDefaultHandlebars } from "handlebars"
-import { escapeJson, createJsonHandlebars } from "../src";
+import { NamedTemplateParser } from '../src'
 
 
-describe("escaping", () => {
+describe("Templating", () => {
 
-    it("escape enters", () => {
+    it("Parse directory sync", () => {
+
         // arrange
-        const txt = "This\nis\nso\ncool!"
+        const handlebars = createDefaultHandlebars();
+        const parser = new NamedTemplateParser(handlebars);
+        parser.loadTemplatesFromDirectorySync('./test/templates/');
 
         // act
-        const actual = escapeJson(txt);
+        const actual = parser.parse('main', { items: [{ name: 'Alpha' }, { name: 'Beta' }] });
 
         // assert
-        expect(actual).to.equal("This\\nis\\nso\\ncool!");
+        const expected = `This is a list: Alpha, Beta`;
+        expect(actual).to.eq(expected);
     });
 
-    it("escape quotes", () => {
+
+    it("Parse directory async", async () => {
 
         // arrange
-        const txt = 'Einstein: "Uasually I\'m misquoted."';
+        const handlebars = createDefaultHandlebars();
+        const parser = new NamedTemplateParser(handlebars);
+        await parser.loadTemplatesFromDirectory('./test/templates/');
 
         // act
-        const actual = escapeJson(txt);
+        const actual = parser.parse('main', { items: [{ name: 'Alpha' }, { name: 'Beta' }] });
 
         // assert
-        expect(actual).to.equal("Einstein: \\\"Uasually I\'m misquoted.\\\"");
+        const expected = `This is a list: Alpha, Beta`;
+        expect(actual).to.eq(expected);
     });
 
-});
-
-describe("create", () => {
-
-    it("Parse simple JSON template", () => {
+    it("Manually added", () => {
 
         // arrange
-        const handlebars = createJsonHandlebars();
-        const template = JSON.stringify({ "message": "Hello {{name}}!" })
-        const data = { name: "World" };
+        const handlebars = createDefaultHandlebars();
+        const parser = new NamedTemplateParser(handlebars);
+        parser.addNamedTemplate('main', 'This is a list: {{#items}}{{> include}}{{#unless @last}}, {{/unless}}{{/items}}');
+        parser.addNamedTemplate('include', '{{name}}');
 
         // act
-        const compiledTemplate = handlebars.compile(template);
-        const actual = compiledTemplate(data) as any;
+        const actual = parser.parse('main', { items: [{ name: 'Alpha' }, { name: 'Beta' }] });
 
         // assert
-        expect(actual).not.to.be.null;
-        expect(actual.message).to.equal('Hello World!');
-    });
-
-    it("Parse simple JSON template with quotes", () => {
-
-        // arrange
-        const handlebars = createJsonHandlebars();
-        const template = `{ "message": "Hello {{name}}!" }`;
-        const data = { name: 'Quinton "Rampage" Jacksons' };
-
-        // act
-        const compiledTemplate = handlebars.compile(template);
-        const actual = compiledTemplate(data) as any;
-
-        // assert
-        expect(actual).not.to.be.null;
-        expect(actual.message).to.equal('Hello Quinton "Rampage" Jacksons!');
-    });
-
-    it("Parse with create", ()=>{
-
-        // arrange
-        const handlebars = createJsonHandlebars().create();
-        const template = `{ "message": "Hello {{name}}!" }`;
-        const data = { name: 'Quinton "Rampage" Jacksons' };
-
-        // act
-        const compiledTemplate = handlebars.compile(template);
-        const actual = compiledTemplate(data) as any;
-
-        // assert
-        expect(actual).not.to.be.null;
-        expect(actual.message).to.equal('Hello Quinton "Rampage" Jacksons!');
-    });
-
-    it("Default handlebars should not be affected.", ()=>{
-
-        // arrange
-        const json = createJsonHandlebars()
-        const standard = createDefaultHandlebars();
-        const template = `{ "message": "Hello {{name}}!" }`;
-        const data = { name: 'Quinton "Rampage" Jacksons' };
-
-         // act
-         const compiledTemplate = standard.compile(template);
-         const actual = compiledTemplate(data) as any;
-
-         // assert
-        expect(actual, "Actual should be an object that has HTML escaped strings.").to.equal(`{ "message": "Hello Quinton &quot;Rampage&quot; Jacksons!" }`);
-    });
-
-});
-
-describe("error handling", () => {
-
-    it("forget a comma in an arry", () => {
-
-        // arrange
-        const handlebars = createJsonHandlebars();
-        const template = `{
-            "blocks": [
-                {{#items}}
-                { "message": "Hello {{name}}!" }
-                {{/items}}
-            ]
-        }`;
-        const data = { items: [{ name: "Alpha" }, { name: "Beta" }] };
-
-        // act
-        const compiledTemplate = handlebars.compile(template);
-        try {
-            compiledTemplate(data);
-        }
-        catch (ex) {
-            expect(ex.toString()).to.equal(`SyntaxError: Unexpected token { in JSON at position 88
-3:                 { "message": "Hello Alpha!" }
-4:                 { "message": "Hello Beta!" }
-------------------^
-5:             ]`);
-        }
+        const expected = `This is a list: Alpha, Beta`;
+        expect(actual).to.eq(expected);
     });
 
 });
