@@ -21,9 +21,7 @@ const obj = compiledTemplate(data);
 ```
 
 ## Error handling
-It is really easy to create invalid JSON when you are templating. To make things easier, we've included better error message.
-
-This code:
+It is really easy to create invalid JSON when you are templating. To make things easier, we've included better error messages. The following code will generate invalid JSON:
 ```js
 const handlebars = createJsonHandlebars();
 const template = `{
@@ -36,10 +34,12 @@ const data = { items: [{ name: "Alpha" }, { name: "Beta" }] };
 const compiledTemplate = handlebars.compile(template);
 compiledTemplate(data);
 ```
-Will generate the following exception information:
-> SyntaxError: Unexpected token { in JSON at position 88
-> 3:    { "message": "Hello Alpha!" }
-> 4:    { "message": "Hello Beta!" }
-> -----^
-> 5:  ]
+The error message will be:
+```txt
+SyntaxError: Unexpected token { in JSON at position 88
+3:    { "message": "Hello Alpha!" }
+4:    { "message": "Hello Beta!" }
+-----^
+5:  ]
+```
 This will help you debug.
