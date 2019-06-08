@@ -1,6 +1,12 @@
 # Handlebars a la JSON
 Handlebars is a great and simple templating engine for generating HTML. But what if you need to generate JSON? That's what this package does.
 
+## Installation
+Install it using NPM:
+```sh
+npm install --save handlebars-a-la-json
+```
+
 ## Usage
 You basically instantiate the handler and use it. Instead of a string it will return a JSON object.
 ```js
@@ -42,4 +48,4 @@ SyntaxError: Unexpected token { in JSON at position 88
 -----^
 5:  ]
 ```
-This will help you debug.
+This will help you debug and find out that you're missing a comma between the objects.
