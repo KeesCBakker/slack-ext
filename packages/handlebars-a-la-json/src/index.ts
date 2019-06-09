@@ -18,7 +18,12 @@ export function escapeJson(str: any): string {
         .replace(/\r/g, "\\r");
 }
 
-export function createJsonHandlebars(): typeof Handlebars {
+export interface IHandlebars {
+    create(): IHandlebars;
+    compile<T = any>(input: any, options?: CompileOptions): HandlebarsTemplateDelegate<T>;
+}
+
+export function createJsonHandlebars(): IHandlebars {
     const instance = createDefaultHandlebars();
     instance.Utils.escapeExpression = escapeJson;
     (<any>instance).create = createJsonHandlebars;
