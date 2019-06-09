@@ -3,9 +3,38 @@
 import { expect } from "chai";
 import { TemplatedDialogManager } from "../src"
 import { MockedSlackMessageAdapter, MockedSlackApi } from "./mocks"
+import { TemplatedDialogForm } from "../src/TemplatedDialogForm";
+import { IPayload } from "../src/definitions";
 
 
-describe("TemplateDialogManager", () => {
+class TestForm extends TemplatedDialogForm {
+
+    submission: any | null = null;
+
+    constructor(manager: TemplatedDialogManager) {
+        super('dialog', manager);
+    }
+
+    getTriggers() {
+        return [{ actionId: 'hello' }]
+    }
+
+    async getTemplateData(payload: IPayload) {
+        await Promise.resolve();
+        return {
+            "title": "My first dialog"
+        }
+    }
+
+    async onSubmit(payload: IPayload) {
+        await Promise.resolve();
+        this.submission = payload.submission;
+    }
+
+}
+
+
+describe("TemplateDialogForm", () => {
 
     it("Open on action", (done) => {
 
@@ -13,15 +42,9 @@ describe("TemplateDialogManager", () => {
         const slackApi = new MockedSlackApi();
         const adapter = new MockedSlackMessageAdapter();
         const manager = new TemplatedDialogManager('./test/templates', slackApi, adapter);
-        const dialog = manager.createDialog('dialog', [{ actionId: 'hello' }]);
+        const dialog = new TestForm(manager);
 
         // act
-        dialog.onOpen.sub((sender, args) => {
-            args.callback({
-                title: "My first dialog"
-            });
-        });
-
         adapter.trigger({
             trigger_id: 'random_trigger_id',
             actions: [{
@@ -51,27 +74,14 @@ describe("TemplateDialogManager", () => {
 
     });
 
+
     it("Submit callback", (done) => {
 
         // arrange
         const slackApi = new MockedSlackApi();
         const adapter = new MockedSlackMessageAdapter();
         const manager = new TemplatedDialogManager('./test/templates', slackApi, adapter);
-        const dialog = manager.createDialog('dialog', [{ actionId: 'hello' }]);
-
-        dialog.onSubmit.sub((sender, args) => {
-
-            // assert
-            expect(args).to.deep.equal({
-                trigger_id: 'random_trigger_id',
-                callback_id: 'submit_dialog',
-                submission: {
-                    message: 'test'
-                }
-            });
-
-            done();
-        });
+        const dialog = new TestForm(manager);
 
         // act
         adapter.trigger({
@@ -81,6 +91,15 @@ describe("TemplateDialogManager", () => {
                 message: 'test'
             }
         });
+
+        // assert
+        setTimeout(() => {
+            expect(dialog.submission).to.deep.equal({
+                message: 'test'
+            });
+
+            done();
+        }, 10);
     });
 
 });

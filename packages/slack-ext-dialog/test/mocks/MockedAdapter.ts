@@ -17,9 +17,10 @@ export class MockedSlackMessageAdapter implements ISlackMessageAdapter {
     public trigger(payload: IPayload) {
 
         for (let action of this._actions) {
+
             const condition = action.condition;
             const callback = action.callback;
-            if (condition instanceof String) {
+            if (typeof condition == "string") {
 
                 if (!payload.callback_id)
                     continue;
@@ -53,7 +54,7 @@ export class MockedSlackMessageAdapter implements ISlackMessageAdapter {
                 const actionId = payload.actions[0].action_id;
                 const blockId = payload.actions[0].block_id;
 
-                if (ac.actionId instanceof String) {
+                if (typeof ac.actionId == "string") {
                     if (ac.actionId != actionId)
                         continue;
                 }
@@ -62,7 +63,7 @@ export class MockedSlackMessageAdapter implements ISlackMessageAdapter {
                         continue;
                 }
 
-                if (ac.blockId instanceof String) {
+                if (typeof ac.blockId == "string") {
                     if (ac.blockId != blockId)
                         continue;
                 }

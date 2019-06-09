@@ -21,7 +21,7 @@ export interface IPayload {
         id: string,
         name: string
     },
-    actions: Array<IAction>,
+    actions?: Array<IAction>,
     container?: {
         channel_id: string
     },
