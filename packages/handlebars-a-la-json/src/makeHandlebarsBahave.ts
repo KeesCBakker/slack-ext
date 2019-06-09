@@ -4,7 +4,7 @@ export interface ITemplateDelegate<T = any> {
 
 export interface IHandlebars {
     create(): IHandlebars;
-    compile<T = any>(input: any, options?: CompileOptions): ITemplateDelegate<T>;
+    compile<T = any>(input: any, options?: ICompileOptions): ITemplateDelegate<T>;
 }
 
 export interface IRuntimeOptions {
