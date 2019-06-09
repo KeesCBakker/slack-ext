@@ -43,7 +43,7 @@
   "dependencies": {
     "@slack/interactive-messages": "^1.1.1",
     "handlebars-a-la-json": "^1.4.14",
-    "handlebars-dir": "^1.4.15",
+    "handlebars-dir": "^1.4.14",
     "slack": "^11.0.2",
     "ste-events": "^1.4.11"
   },
