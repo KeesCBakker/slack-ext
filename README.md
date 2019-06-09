@@ -1,4 +1,4 @@
-[![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/) [![Build Status](https://travis-ci.org/KeesCBakker/slack-ext.svg?branch=master)](https://travis-ci.org/KeesCBakker/slack-ext) [forever](https://david-dm.org/KeesCBakker/slack-ext.svg)](https://david-dm.org/KeesCBakker/slack-ext)
+[![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/) [![Build Status](https://travis-ci.org/KeesCBakker/slack-ext.svg?branch=master)](https://travis-ci.org/KeesCBakker/slack-ext) [![forever](https://david-dm.org/KeesCBakker/slack-ext.svg)](https://david-dm.org/KeesCBakker/slack-ext)
 
 # Slack EXT
 This is the home for some extensions for Slack.
