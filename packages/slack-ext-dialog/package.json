@@ -17,12 +17,8 @@
     "url": "git+https://github.com/KeesCBakker/slack-ext.git"
   },
   "keywords": [
-    "events",
-    "event",
-    "strongly",
-    "typed",
-    "typescript",
-    "DotNet"
+    "Slack",
+    "Dialog"
   ],
   "author": "Kees C. Bakker (https://keestalkstech.com)",
   "license": "MIT",
