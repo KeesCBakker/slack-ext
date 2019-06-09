@@ -1,0 +1,16 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "target": "es2015",
+    "module": "commonjs",
+    "outDir": "dist",
+    "declaration": true,
+    "strict": true
+  },
+  "include": [
+    "src/**/*.ts", "src/definitions.ts", "test/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

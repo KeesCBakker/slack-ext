@@ -13,6 +13,10 @@
             "path": "packages/slack-ext-dialog"
         },
         {
+            "name": "slack-ext-updatable-message",
+            "path": "packages/slack-ext-updatable-message"
+        },
+        {
             "path": "."
         }
     ]

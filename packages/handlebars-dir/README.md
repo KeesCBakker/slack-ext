@@ -24,7 +24,12 @@ parser.loadTemplatesFromDirectorySync('./my-directory/');
 await parser.loadTemplatesFromDirectory('./test/templates/');
 
 // result
-const result = parser.parse('main', { items: [{ name: 'Alpha' }, { name: 'Beta' }] });
+const result = parser.parse('main', { 
+    items: [
+        { name: 'Alpha' },
+        { name: 'Beta' }
+    ] 
+});
 ```
 
 ## Manual input

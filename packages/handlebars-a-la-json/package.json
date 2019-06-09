@@ -1,7 +1,7 @@
 {
   "name": "handlebars-a-la-json",
   "version": "1.4.14",
-  "description": "Handlebars is great for generating HTML. Let's use it to generate JSON.",
+  "description": "Handlebars is great for generating HTML. Let's use it to generate JSON!",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -17,12 +17,9 @@
     "url": "git+https://github.com/KeesCBakker/slack-ext.git"
   },
   "keywords": [
-    "events",
-    "event",
-    "strongly",
-    "typed",
-    "typescript",
-    "DotNet"
+    "handlebars",
+    "JSON",
+    "templates"
   ],
   "author": "Kees C. Bakker (https://keestalkstech.com)",
   "license": "MIT",

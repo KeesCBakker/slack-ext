@@ -49,3 +49,8 @@ SyntaxError: Unexpected token { in JSON at position 88
 5:  ]
 ```
 This will help you debug and find out that you're missing a comma between the objects.
+
+## Notes
+Because of the nature of this implementation you will have to add any helpers to the created object. Doing this will ensure that HTML- and JSON-template won't collide. Because this package will uncache the current Handlebars-package, it needs to be referenced before or after Handlebar setup.
+
+It is better to use the `Handlebars.create` to rule out any collisions. More info here: http://handlebarsjs.com/reference.html#base-create

@@ -1,4 +1,4 @@
-# Slack EXT: dialog
+# Slack EXT: Dialog
 Dialogs are a nice feature of Slack. Setting them up might be a hassle that's why we've created a few shortcuts to get your dialogs working fast. It is template based, so you can easily change your dialogs without having to change your JavaScript code.
 
 ## Installation
