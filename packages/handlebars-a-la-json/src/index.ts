@@ -7,7 +7,7 @@ import { create as createDefaultHandlebars } from "handlebars"
 decache("handlebars");
 
 import { safeJsonParse } from "better-error-message-for-json-parse"
-import { IHandlebars, ICompileOptions } from "./makeHandlebarsBahave";
+import { IHandlebars, ICompileOptions } from "./makeHandlebarsBehave";
 
 export function escapeJson(str: any): string {
     str = str ? str.toString() : '';
