@@ -1,6 +1,6 @@
 {
   "name": "handlebars-dir",
-  "version": "1.4.13",
+  "version": "1.4.15",
   "description": "Handlebars template parser based on a directory.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
