@@ -66,7 +66,7 @@ describe("create", () => {
         expect(actual.message).to.equal('Hello Quinton "Rampage" Jacksons!');
     });
 
-    it("Parse with create", ()=>{
+    it("Parse with create", () => {
 
         // arrange
         const handlebars = createJsonHandlebars().create();
@@ -82,7 +82,7 @@ describe("create", () => {
         expect(actual.message).to.equal('Hello Quinton "Rampage" Jacksons!');
     });
 
-    it("Default handlebars should not be affected.", ()=>{
+    it("Default handlebars should not be affected.", () => {
 
         // arrange
         const json = createJsonHandlebars()
@@ -90,11 +90,11 @@ describe("create", () => {
         const template = `{ "message": "Hello {{name}}!" }`;
         const data = { name: 'Quinton "Rampage" Jacksons' };
 
-         // act
-         const compiledTemplate = standard.compile(template);
-         const actual = compiledTemplate(data) as any;
+        // act
+        const compiledTemplate = standard.compile(template);
+        const actual = compiledTemplate(data) as any;
 
-         // assert
+        // assert
         expect(actual, "Actual should be an object that has HTML escaped strings.").to.equal(`{ "message": "Hello Quinton &quot;Rampage&quot; Jacksons!" }`);
     });
 
@@ -127,6 +127,58 @@ describe("error handling", () => {
 ------------------^
 5:             ]`);
         }
+    });
+
+    it("correct for enters", () => {
+
+        const handlebars = createJsonHandlebars();
+        const template = `{
+            "a": "b"
+
+
+            "c": "d"
+        }`;
+
+        // act
+        const compiledTemplate = handlebars.compile(template);
+        try {
+            compiledTemplate({});
+        }
+        catch (ex) {
+            expect(ex.toString()).to.equal(`SyntaxError: Unexpected string in JSON at position 35
+2:             "a": "b"
+3:             "c": "d"
+--------------^
+4:         }`);
+        }
+    });
+
+});
+
+describe("parsing of enters", () => {
+
+    it("replace enters", () => {
+
+        // arrange
+        const handlebars = createJsonHandlebars();
+        const template = `{
+  "a": "{{name}}"
+
+  ,
+
+  "b": "{{name}}"
+}`;
+        const data = { name: "World" };
+
+        // act
+        const compiledTemplate = handlebars.compile(template);
+        const actual = compiledTemplate(data) as any;
+
+        // assert
+        expect(actual).not.to.be.null;
+        expect(actual.a).to.equal(data.name);
+        expect(actual.b).to.equal(data.name);
+
     });
 
 });

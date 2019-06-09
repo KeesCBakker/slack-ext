@@ -27,7 +27,18 @@ export function createJsonHandlebars(): IHandlebars {
     (<any>instance).compile = (input: any, options?: ICompileOptions) => {
         const compiled = (<any>instance).__def__compile(input, options);
         return (context: any, options: any): any => {
-            const result = compiled(context, options);
+            
+            let result = compiled(context, options);
+
+            // replace enters
+            result = result.replace('\r', '');
+
+            // skip empty line
+            result = result.split('\n').filter(l => !/^\s*$/.test(l)).join('\n');
+
+            // replace lines that only have a comma - they are hard to debug
+            result = result.replace(/\n\s*,\s*\n/g, ',\n');
+
             return safeJsonParse(result);
         };
     }
