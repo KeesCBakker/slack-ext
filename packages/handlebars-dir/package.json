@@ -6,7 +6,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "upgrade-packages": "ncu -a & npm install",
-    "test": "npm run mocha --recursive test/**/*.ts --exit",
+    "test": "npm run mocha --recursive test/**/*.spec.ts --exit",
     "mocha": "mocha -r ts-node/register",
     "build": "del-cli dist & tsc",
     "prepublishOnly": "npm run build & npm test & npm version patch",
