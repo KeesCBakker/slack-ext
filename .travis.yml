@@ -2,9 +2,10 @@ language: node_js
 node_js:
   - stable
 install:
-  - npm build
+  - npm install -g lerna
   
 script:
+  - npm build
   - npm test
 
 # Send coverage data to Coveralls
