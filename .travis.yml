@@ -3,6 +3,7 @@ node_js:
   - stable
 install:
   - npm install -g lerna
+  - npm install -g tsc
   
 script:
   - npm run build
