@@ -1,16 +1,9 @@
 {
-  "compileOnSave": true,
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "target": "es2015",
-    "module": "commonjs",
-    "outDir": "dist",
-    "declaration": true,
-    "strict": true
+    "outDir": "./dist"
   },
   "include": [
-    "src/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules"
+    "./src"
   ]
-}
+ }
