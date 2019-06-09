@@ -2,7 +2,6 @@
 *.suo
 *.config
 .vs
-.vscode
 *.njsproj
 examples/*.js
 examples/*.map
