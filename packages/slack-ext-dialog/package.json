@@ -2,8 +2,8 @@
   "name": "slack-ext-dialog",
   "version": "1.4.12",
   "description": "Template based dialogs.",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
   "scripts": {
     "upgrade-packages": "ncu -a & npm install",
     "test": "npm run mocha --recursive test/**/*.ts --exit",
