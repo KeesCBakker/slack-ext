@@ -18,7 +18,7 @@ export function escapeJson(str: any): string {
         .replace(/\r/g, "\\r");
 }
 
-export function createJsonHandlebars() {
+export function createJsonHandlebars(): typeof Handlebars {
     const instance = createDefaultHandlebars();
     instance.Utils.escapeExpression = escapeJson;
     (<any>instance).create = createJsonHandlebars;
