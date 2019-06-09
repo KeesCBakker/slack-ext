@@ -6,18 +6,17 @@
     "better-error-message-for-json-parse": "^0.1.6",
     "decache": "^4.5.1",
     "handlebars": "^4.1.2",
-    "handlebars-a-la-json": "^1.4.13",
-    "handlebars-dir": "^1.4.13",
     "slack": "^11.0.2",
     "ste-events": "^1.4.11"
   },
   "devDependencies": {
     "husky": "^2.4.0",
-    "lerna": "^2.9.0"
+    "lerna": "^3.14.1"
   },
   "scripts": {
     "test": "lerna bootstrap & lerna run test",
-    "upgrade-packages": "ncu -a & npm install",
+    "upgrade-packages": "ncu -a & npm install & lerna run update-packages & lerna bootstrap & lerna run build & lerna run test & echo 'Upgrade(s) completed!'",
+    "build": "lerna bootstrap & lerna run build",
     "make": "lerna bootstrap & lerna run test & lerna run build && lerna publish --yes --cd-version patch & git add . & git commit -m Version-bump && git push "
   },
   "husky": {
