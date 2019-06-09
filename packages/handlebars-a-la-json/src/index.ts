@@ -18,17 +18,45 @@ export function escapeJson(str: any): string {
         .replace(/\r/g, "\\r");
 }
 
+export interface ITemplateDelegate<T = any> {
+    (context: T, options?: RuntimeOptions): string;
+}
+
 export interface IHandlebars {
     create(): IHandlebars;
-    compile<T = any>(input: any, options?: CompileOptions): HandlebarsTemplateDelegate<T>;
+    compile<T = any>(input: any, options?: CompileOptions): ITemplateDelegate<T>;
 }
+
+export interface ICompileOptions {
+    data?: boolean;
+    compat?: boolean;
+    knownHelpers?: {
+        helperMissing?: boolean;
+        blockHelperMissing?: boolean;
+        each?: boolean;
+        if?: boolean;
+        unless?: boolean;
+        with?: boolean;
+        log?: boolean;
+        lookup?: boolean;
+    };
+    knownHelpersOnly?: boolean;
+    noEscape?: boolean;
+    strict?: boolean;
+    assumeObjects?: boolean;
+    preventIndent?: boolean;
+    ignoreStandalone?: boolean;
+    explicitPartialContext?: boolean;
+  }
+  
+
 
 export function createJsonHandlebars(): IHandlebars {
     const instance = createDefaultHandlebars();
     instance.Utils.escapeExpression = escapeJson;
     (<any>instance).create = createJsonHandlebars;
     (<any>instance).__def__compile = instance.compile;
-    (<any>instance).compile = (input: any, options?: CompileOptions) => {
+    (<any>instance).compile = (input: any, options?: ICompileOptions) => {
         const compiled = (<any>instance).__def__compile(input, options);
         return (context: any, options: any): any => {
             const result = compiled(context, options);
