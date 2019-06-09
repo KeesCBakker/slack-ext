@@ -1,5 +1,5 @@
 {
-  "name": "slack-ext-dialog",
+  "name": "slack-ext-updatable-message",
   "version": "1.4.14",
   "description": "Updatable messages for Slack. Awesome!",
   "main": "dist/src/index.js",
