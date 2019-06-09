@@ -6,10 +6,10 @@ export class TemplatedDialogForm {
 
     private _dialog: TemplatedDialog;
 
-    constructor(public templateName: string, manager: TemplatedDialogManager) {
+    constructor(public id: string, public templateName: string, manager: TemplatedDialogManager) {
 
         const triggers = this.getTriggers();
-        this._dialog = manager.createDialog(templateName, triggers);
+        this._dialog = manager.createDialog(id, templateName, triggers);
         this._dialog.onOpen.sub(async (dialog, data) => {
             data.callback(await this.getTemplateData(data.payload));
         });

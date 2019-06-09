@@ -22,9 +22,9 @@ export class TemplatedDialogManager{
         this._templateParser.loadTemplatesFromDirectorySync(templateDirectory);
     }
 
-    public createDialog(templateName: string, triggers: Array<IActionCondition>){
+    public createDialog(id: string, templateName: string, triggers: Array<IActionCondition>){
         const dialog = new TemplatedDialog(
-            templateName, 
+            id, 
             this._templateParser, 
             templateName, 
             this._slackApi, 

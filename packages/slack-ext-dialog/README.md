@@ -1,33 +1,70 @@
-# Handlebars dir
-Handlebars are nice! This package will take a directory and compile so it can be used as templates.
+# Slack EXT: dialog
+Dialogs are a nice feature of Slack. Setting them up might be a hassle that's why we've created a few shortcuts to get your dialogs working fast. It is template based, so you can easily change your dialogs without having to change your JavaScript code.
 
 ## Installation
 Install it using NPM:
 ```shell
-npm install --save handlebars-dir
+npm install --save slack-ext-dialog
 ```
 
-## Usage
-Use the `NamedTemplateParser` like this.
+## Fastest way: create form class
+
+
 ```js
-const Handlebars = require("handlebars");
-const { NamedTemplateParser } = require("handlebars-dir");
+const { TemplatedDialogForm } = require("slack-ext-dialog");
 
-// load it on its own scope
-const hb = Handlebars.create();
-const parser = new NamedTemplateParser(hb);
+class TestForm extends TemplatedDialogForm {
 
-// sync
-parser.loadTemplatesFromDirectorySync('./my-directory/');
+    submission: any | null = null;
 
-// async
+    constructor(manager: TemplatedDialogManager) {
+        // the id of the dialog wil be 'tst'
+        // we're going to use 'dialog' template
+        super('tst', 'dialog', manager);
+    }
 
-await parser.loadTemplatesFromDirectory('./test/templates/');
+    getTriggers() {
+        // the dialog is going to be shown, whenever
+        // an action with 'hello' is triggerd
+        return [{ actionId: 'hello' }]
+    }
 
-// manual
-parser.addNamedTemplate('main', 'This is a list: {{#items}}{{> include}}{{#unless @last}}, {{/unless}}{{/items}}');
-parser.addNamedTemplate('include', '{{name}}');
+    async getTemplateData(payload) {
+        await Promise.resolve({
+            "title": "My first dialog"
+        });
+    }
 
-// result
-const result = parser.parse('main', { items: [{ name: 'Alpha' }, { name: 'Beta' }] });
+    async onSubmit(payload: IPayload) {
+        this.submission = payload.submission;
+        await Promise.resolve();
+    }
+
+}
 ```
+Now we need to hook the dialog up:
+```js
+const { createDefaultDialogManager } = require("slack-ext-dialog");
+
+const templateDir = "./templates";
+const manager = createDefaultDialogManager("slack-token", "slack-signing-sercret", templateDir);
+
+const dialog = new TestForm(manager);
+```
+Now you'll need to make sure you'll hand a handlebars template named `dialog.handlebars`, like this:
+```js
+{
+    "dialog": {
+        "title": "{{title}}",
+        "submit_label": "OK",
+        "elements": [
+            {
+                "type": "text",
+                "label": "Message",
+                "name": "message"
+            }
+        ]
+    }
+}
+```
+That's it!

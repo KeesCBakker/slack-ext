@@ -12,10 +12,14 @@ class TestForm extends TemplatedDialogForm {
     submission: any | null = null;
 
     constructor(manager: TemplatedDialogManager) {
-        super('dialog', manager);
+        // the id of the dialog wil be 'tst'
+        // we're going to use 'dialog' template
+        super('tst', 'dialog', manager);
     }
 
     getTriggers() {
+        // the dialog is going to be shown, whenever
+        // an action with id 'hello' is triggerd
         return [{ actionId: 'hello' }]
     }
 
@@ -65,7 +69,7 @@ describe("TemplateDialogForm", () => {
                         "label": "Message",
                         "name": "message"
                     }],
-                    callback_id: 'submit_dialog'
+                    callback_id: 'submit_tst'
                 },
                 trigger_id: 'random_trigger_id'
             })
@@ -86,7 +90,7 @@ describe("TemplateDialogForm", () => {
         // act
         adapter.trigger({
             trigger_id: 'random_trigger_id',
-            callback_id: 'submit_dialog',
+            callback_id: 'submit_tst',
             submission: {
                 message: 'test'
             }

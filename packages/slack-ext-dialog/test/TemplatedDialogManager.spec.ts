@@ -13,7 +13,7 @@ describe("TemplateDialogManager", () => {
         const slackApi = new MockedSlackApi();
         const adapter = new MockedSlackMessageAdapter();
         const manager = new TemplatedDialogManager('./test/templates', slackApi, adapter);
-        const dialog = manager.createDialog('dialog', [{ actionId: 'hello' }]);
+        const dialog = manager.createDialog('tst', 'dialog', [{ actionId: 'hello' }]);
 
         // act
         dialog.onOpen.sub((sender, args) => {
@@ -42,7 +42,7 @@ describe("TemplateDialogManager", () => {
                         "label": "Message",
                         "name": "message"
                     }],
-                    callback_id: 'submit_dialog'
+                    callback_id: 'submit_tst'
                 },
                 trigger_id: 'random_trigger_id'
             })
@@ -57,14 +57,14 @@ describe("TemplateDialogManager", () => {
         const slackApi = new MockedSlackApi();
         const adapter = new MockedSlackMessageAdapter();
         const manager = new TemplatedDialogManager('./test/templates', slackApi, adapter);
-        const dialog = manager.createDialog('dialog', [{ actionId: 'hello' }]);
+        const dialog = manager.createDialog('tst', 'dialog', [{ actionId: 'hello' }]);
 
         dialog.onSubmit.sub((sender, args) => {
 
             // assert
             expect(args).to.deep.equal({
                 trigger_id: 'random_trigger_id',
-                callback_id: 'submit_dialog',
+                callback_id: 'submit_tst',
                 submission: {
                     message: 'test'
                 }
@@ -76,7 +76,7 @@ describe("TemplateDialogManager", () => {
         // act
         adapter.trigger({
             trigger_id: 'random_trigger_id',
-            callback_id: 'submit_dialog',
+            callback_id: 'submit_tst',
             submission: {
                 message: 'test'
             }
