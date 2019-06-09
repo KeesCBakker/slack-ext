@@ -2,12 +2,9 @@ language: node_js
 node_js:
   - stable
 install:
-  - npm install -g lerna
-  - npm install -g tsc
-  
-script:
-  - npm run build
-  - npm test
+  - npm install --g lerna
+  - lerna exec "npm install"
 
-# Send coverage data to Coveralls
-# after_script: "cat coverage/lcov.info | node_modules/coveralls/bin/coveralls.js"
+ script:
+  - lerna exec "npm build"
+  - lerna exec "npm test"
