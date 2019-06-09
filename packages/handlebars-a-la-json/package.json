@@ -1,6 +1,6 @@
 {
   "name": "handlebars-a-la-json",
-  "version": "1.4.14",
+  "version": "1.4.15",
   "description": "Handlebars is great for generating HTML. Let's use it to generate JSON!",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -44,5 +44,6 @@
     "better-error-message-for-json-parse": "^0.1.6",
     "decache": "^4.5.1",
     "handlebars": "^4.1.2"
-  }
+  },
+  "gitHead": "a808c031436138baa47a5a5b1a07f48e960d5e8d"
 }

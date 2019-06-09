@@ -1,6 +1,6 @@
 {
   "name": "slack-ext-updatable-message",
-  "version": "1.4.14",
+  "version": "1.4.15",
   "description": "Updatable messages for Slack. Awesome!",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
@@ -42,5 +42,6 @@
   },
   "engines": {
     "node": ">=4.2.4"
-  }
+  },
+  "gitHead": "a808c031436138baa47a5a5b1a07f48e960d5e8d"
 }
