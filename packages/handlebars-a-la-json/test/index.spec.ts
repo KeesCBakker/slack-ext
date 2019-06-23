@@ -121,11 +121,15 @@ describe("error handling", () => {
             compiledTemplate(data);
         }
         catch (ex) {
+
             expect(ex.toString()).to.equal(`SyntaxError: Unexpected token { in JSON at position 88
+1: {
+2:             "blocks": [
 3:                 { "message": "Hello Alpha!" }
 4:                 { "message": "Hello Beta!" }
 ------------------^
-5:             ]`);
+5:             ]
+6:         }`);
         }
     });
 
@@ -135,9 +139,8 @@ describe("error handling", () => {
         const template = `{
             "a": "b"
 
-
             "c": "d"
-        }`;
+}`;
 
         // act
         const compiledTemplate = handlebars.compile(template);
@@ -145,11 +148,13 @@ describe("error handling", () => {
             compiledTemplate({});
         }
         catch (ex) {
+
             expect(ex.toString()).to.equal(`SyntaxError: Unexpected string in JSON at position 35
+1: {
 2:             "a": "b"
 3:             "c": "d"
 --------------^
-4:         }`);
+4: }`);
         }
     });
 

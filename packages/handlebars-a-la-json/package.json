@@ -1,12 +1,12 @@
 {
   "name": "handlebars-a-la-json",
-  "version": "1.4.16",
+  "version": "1.4.17",
   "description": "Handlebars is great for generating HTML. Let's use it to generate JSON!",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "upgrade-packages": "ncu -a & npm install",
-    "test": "npm run mocha --recursive test/**/*.spec.ts --exit",
+    "test": "del-cli dist & npm run mocha --recursive test/**/*.spec.ts --exit",
     "mocha": "mocha -r ts-node/register",
     "build": "del-cli dist & tsc",
     "prepublishOnly": "npm run build & npm test & npm version patch",
