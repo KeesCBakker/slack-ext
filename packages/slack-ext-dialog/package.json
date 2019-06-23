@@ -1,6 +1,6 @@
 {
   "name": "slack-ext-dialog",
-  "version": "1.4.16",
+  "version": "1.5.0",
   "description": "Template-based Slack Dialogs made easy.",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
@@ -38,8 +38,8 @@
   },
   "dependencies": {
     "@slack/interactive-messages": "^1.1.1",
-    "handlebars-a-la-json": "^1.4.17",
-    "handlebars-dir": "^1.4.16",
+    "handlebars-a-la-json": "^1.5.0",
+    "handlebars-dir": "^1.5.0",
     "slack": "^11.0.2",
     "ste-events": "^1.4.11"
   },
