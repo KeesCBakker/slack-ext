@@ -1,6 +1,6 @@
 {
   "name": "slack-ext-updatable-message",
-  "version": "1.5.3",
+  "version": "1.5.4",
   "description": "Updatable messages for Slack. Awesome!",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
