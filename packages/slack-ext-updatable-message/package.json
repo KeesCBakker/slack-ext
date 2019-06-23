@@ -2,8 +2,8 @@
   "name": "slack-ext-updatable-message",
   "version": "1.5.1",
   "description": "Updatable messages for Slack. Awesome!",
-  "main": "dist/src/index.js",
-  "types": "dist/src/index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "upgrade": "ncu -n & npm install",
     "test": "npm run mocha --recursive test/**/*.spec.ts --exit",
