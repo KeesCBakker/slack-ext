@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "upgrade-packages": "ncu -a & npm install",
+    "upgrade": "ncu -n & npm install",
     "test": "npm run mocha --recursive test/**/*.spec.ts --exit",
     "mocha": "mocha -r ts-node/register",
     "build": "del-cli dist & tsc",
