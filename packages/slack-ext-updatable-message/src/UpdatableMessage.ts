@@ -2,7 +2,15 @@ import { ISlackApi, IMessageResult } from "./defintions";
 
 const Slack = require("slack");
 
-export function sendMessage(api: ISlackApi, channel: string, ts: string | null, msg: any): Promise<IMessageResult> {
+export function sendMessage(token: string | ISlackApi, channel: string, ts: string | null, msg: any): Promise<IMessageResult> {
+
+  let api:ISlackApi;
+  if(typeof token == "string"){
+    api = new Slack({ token: token }) as ISlackApi;
+  }
+  else{
+    api = token;
+  }
 
   let data = {} as any;
   if (Object.prototype.toString.call(msg) === "[object String]") {
