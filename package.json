@@ -2,16 +2,16 @@
   "name": "slack-ext-mono-root",
   "private": true,
   "dependencies": {
-    "@slack/interactive-messages": "^1.1.1",
+    "@slack/interactive-messages": "^1.4.1",
     "better-error-message-for-json-parse": "^0.1.6",
     "decache": "^4.5.1",
-    "handlebars": "^4.1.2",
+    "handlebars": "^4.7.2",
     "slack": "^11.0.2",
-    "ste-events": "^1.5.2"
+    "ste-events": "^1.6.8"
   },
   "devDependencies": {
-    "husky": "^2.4.1",
-    "lerna": "^3.15.0"
+    "husky": "^4.2.1",
+    "lerna": "^3.20.2"
   },
   "scripts": {
     "build": "lerna bootstrap & lerna run build",

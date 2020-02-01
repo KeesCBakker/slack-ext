@@ -28,14 +28,14 @@
   },
   "homepage": "https://github.com/KeesCBakker/slack-ext#readme",
   "devDependencies": {
-    "@types/chai": "^4.1.7",
-    "@types/mocha": "^5.2.5",
-    "@types/node": "^10.12.15",
+    "@types/chai": "^4.2.8",
+    "@types/mocha": "^7.0.1",
+    "@types/node": "^13.7.0",
     "chai": "^4.2.0",
-    "del-cli": "^1.1.0",
-    "mocha": "^5.2.0",
-    "ts-node": "^7.0.1",
-    "typescript": "^3.2.2"
+    "del-cli": "^3.0.0",
+    "mocha": "^7.0.1",
+    "ts-node": "^8.6.2",
+    "typescript": "^3.7.5"
   },
   "engines": {
     "node": ">=4.2.4"
@@ -43,7 +43,7 @@
   "dependencies": {
     "better-error-message-for-json-parse": "^0.1.6",
     "decache": "^4.5.1",
-    "handlebars": "^4.1.2"
+    "handlebars": "^4.7.2"
   },
   "gitHead": "ec6edffc12294742cfaaab9c759747f5022b654a"
 }
