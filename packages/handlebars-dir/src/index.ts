@@ -46,7 +46,7 @@ export class NamedTemplateParser implements INamedTemplateParser {
             return compileTemplate(templateData);
         }
         catch (ex) {
-            throw new Error(`Template invalid '${name}'. Message: "${ex}".`);
+            throw new Error(`Template invalid '${name}'. Message: "${ex}". Stack:\n${ex.stack}\n`);
         }
     }
 
